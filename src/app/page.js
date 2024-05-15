@@ -10,8 +10,9 @@ export default async function Home({ searchParams }) {
       genre === 'fetchTopRated' ? 'movie/top_rated' : 'trending/all/week';
     
     const res = await fetch(
-      `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=en-US&page=1`
+      `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=en-US&page=1`, {revalidate: 10}
     );
+   
 
     if (!res.ok) {
       throw new Error('Something went wrong');
@@ -19,7 +20,7 @@ export default async function Home({ searchParams }) {
 
     const data = await res.json();
     results = data.results;
-    console.log(results);
+    
   } catch (error) {
     console.error('Error fetching data:', error.message);
   }
