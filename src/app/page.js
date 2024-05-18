@@ -10,7 +10,7 @@ export default async function Home({ searchParams }) {
       genre === 'fetchTopRated' ? 'movie/top_rated' : 'trending/all/week';
     
     const res = await fetch(
-      `https://api.themoviedb.org/3/${endpoint}?api_key=${API_KEY}&language=en-US&page=1`, {revalidate: 10}
+      `https://api.themoviedb.org/v1/movie/${endpoint}?api_key=${API_KEY}&language=en-US&page=1`, {revalidate: 10}
     );
    
 
